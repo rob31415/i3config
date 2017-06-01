@@ -116,6 +116,7 @@ bindsym $mod+Tab workspace next_on_output
 bindsym $mod+shift+Tab workspace prev_on_output
 
 
+
 # move focused container to workspace
 bindsym $mod+Shift+KP_1 move container to workspace 1
 bindsym $mod+Shift+KP_2 move container to workspace 2
@@ -169,63 +170,7 @@ bar {
         status_command ~/.i3/i3status_.sh
 }
 
-
-exec --no-startup-id /home/rob/setupX.sh
-
 exec --no-startup-id setxkbmap de
-
-# xrandr --output eDP1 --right-of HDMI1
-
-workspace 1 output HDMI1
-workspace 4 output HDMI1
-workspace 7 output HDMI1
-# rename workspace 1 to "1: edit"
-# rename workspace 4 to "4: wbltools1"
-# rename workspace 7 to "7: www"
-
-workspace 3 output eDP1
-workspace 6 output eDP1
-workspace 9 output eDP1
-# rename workspace 3 to "3: git"
-# rename workspace 6 to "6: wbltools2"
-# rename workspace 9 to "9: fs"
-
-
-# lock session?
-# shutdown?
-
-exec --no-startup-id i3-msg 'workspace 1; exec terminator;'
-exec --no-startup-id i3-msg 'workspace 7; exec firefox;'
-
-exec --no-startup-id i3-msg 'workspace 3; exec thunderbird;'
-exec --no-startup-id i3-msg 'workspace 6; exec dolphin; '
-
-exec --no-startup-id i3-msg 'workspace 1'
-
-
-
-
-
-#main = HDMI1 = left
-#side = eDP1 = right
-
-#l don't do subl
-#1 edit: terminator
-#r
-#3 git
-
-#l
-#4 wbltools1: ibstool, editalltables, axioctrl
-#r
-#6 wbltools2: telemaintenance
-
-#l
-#7 www: firefox
-#r
-#9 fs: dolphin, thunder
-
-bindsym Shift+$mod+bracketright move workspace to output right
-bindsym Shift+$mod+bracketleft move workspace to output left
 
 
 # needs: xbacklight alsa-utils pulseaudio
@@ -237,4 +182,66 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+
+
+##########################################################
+## 2 MONITOR SETUP, LEFT=MAIN EXTENRAL, RIGHT=BUILT IN
+##########################################################
+
+#exec --no-startup-id ~/.i3/setupX_left-extern_right-laptop.sh
+#
+##main = HDMI1 = left
+##side = eDP1 = right
+#
+## xrandr --output eDP1 --right-of HDMI1
+#
+#workspace 1 output HDMI1
+#workspace 4 output HDMI1
+#workspace 7 output HDMI1
+## rename workspace 1 to "1: edit"
+## rename workspace 4 to "4: tools1"
+## rename workspace 7 to "7: www"
+#
+#workspace 3 output eDP1
+#workspace 6 output eDP1
+#workspace 9 output eDP1
+## rename workspace 3 to "3: git"
+## rename workspace 6 to "6: tools2"
+## rename workspace 9 to "9: fs"
+#
+#bindsym Shift+$mod+bracketright move workspace to output right
+#bindsym Shift+$mod+bracketleft move workspace to output left
+
+##########################################################
+## 2 MONITOR SETUP, UPPER=MAIN EXTERNAL, LOWER=BUILT IN
+##########################################################
+
+exec --no-startup-id ~/.i3/setupX_upper-extern_lower-laptop.sh
+
+workspace 7 output VGA1
+workspace 8 output VGA1
+workspace 9 output VGA1
+
+workspace 1 output eDP1
+workspace 2 output eDP1
+workspace 3 output eDP1
+
+#bindsym Shift+$mod+bracketright move workspace to output upper
+#bindsym Shift+$mod+bracketleft move workspace to output lower
+
+##########################################################
+
+
+# lock a session with "i3lock"
+# shutdown?
+
+exec --no-startup-id i3-msg 'workspace 1; exec terminator;'
+exec --no-startup-id i3-msg 'workspace 7; exec firefox;'
+
+exec --no-startup-id i3-msg 'workspace 3; exec thunderbird;'
+exec --no-startup-id i3-msg 'workspace 6; exec dolphin; '
+
+exec --no-startup-id i3-msg 'workspace 1'
+
 
