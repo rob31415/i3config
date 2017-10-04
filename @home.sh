@@ -1,0 +1,1 @@
+cat config.base config.home > config

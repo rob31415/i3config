@@ -1,0 +1,16 @@
+##########################################################
+## 2 MONITOR SETUP, UPPER=MAIN EXTERNAL, LOWER=BUILT IN
+##########################################################
+
+exec --no-startup-id ~/.i3/setupX_upper-extern_lower-laptop.sh
+
+workspace 7 output VGA1
+workspace 8 output VGA1
+workspace 9 output VGA1
+
+workspace 1 output eDP1
+workspace 2 output eDP1
+workspace 3 output eDP1
+
+bindsym Shift+$mod+bracketright move workspace to output upper
+bindsym Shift+$mod+bracketleft move workspace to output lower
