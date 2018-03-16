@@ -1,7 +1,7 @@
-xrandr --output eDP1 --mode 1920x1080
+#xrandr --output eDP-1 --mode 1920x1080
+#sleep 0.5
+xrandr --output eDP-1 --below VGA-1
 sleep 0.5
-xrandr --output eDP1 --below VGA1
+xrandr --output VGA-1 --primary
 sleep 0.5
-xrandr --output VGA1 --primary
-sleep 0.5
-feh --bg-scale ~/.i3/leaf1.jpg
+feh --bg-scale /home/rob/.config/i3/leaf1.jpg

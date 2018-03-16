@@ -9,16 +9,27 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# https://unix.stackexchange.com/questions/299702/retrieving-i3-tree
+
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans 10
+
+client.focused          #662200 #b33c00 #000000 #ff661a   #ff884d
+client.focused_inactive #333333 #5f676a #000000 #484e50   #5f676a
+client.unfocused        #333333 #222222 #000000 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -62,20 +73,22 @@ bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+h split h;
-bindsym $mod+Shift+h split h; exec i3-sensible-terminal;
+#bindsym $mod+Shift+h split h; exec i3-sensible-terminal;
+bindsym $mod+Shift+h split h; exec /opt/crt/cool-retro-term;
 
 # split in vertical orientation
 bindsym $mod+v split v;
-bindsym $mod+Shift+v split v; exec i3-sensible-terminal;
+#bindsym $mod+Shift+v split v; exec i3-sensible-terminal;
+bindsym $mod+Shift+v split v; exec  /opt/crt/cool-retro-term;
 
 # enter fullscreen mode for the focused container
-# bindsym $mod+f fullscreen
-bindsym $mod+Return fullscreen
+bindsym $mod+f fullscreen
+#bindsym $mod+Return fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+1 layout stacking
-bindsym $mod+2 layout tabbed
-bindsym $mod+3 layout toggle split
+bindsym $mod+F1 layout stacking
+bindsym $mod+F2 layout tabbed
+bindsym $mod+F3 layout toggle split
 
 workspace_layout tabbed
 
@@ -86,33 +99,26 @@ bindsym $mod+space floating toggle
 bindsym $mod+Shift+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+backspace focus parent
+bindsym $mod+BackSpace focus parent
 
 # focus the child container
-bindsym $mod+Shift+backspace focus child
-
+#bindsym $mod+Shift+BackSpace focus child
+bindsym $mod+Return focus child
 
 # switch to workspace
-#bindsym $mod+1 workspace 1
-#bindsym $mod+2 workspace 2
-#bindsym $mod+3 workspace 3
-#bindsym $mod+4 workspace 4
-#bindsym $mod+5 workspace 5
-#bindsym $mod+6 workspace 6
-#bindsym $mod+7 workspace 7
-#bindsym $mod+8 workspace 8
-#bindsym $mod+9 workspace 9
-#bindsym $mod+0 workspace 10
-bindsym $mod+KP_1 workspace 1
-bindsym $mod+KP_2 workspace 2
-bindsym $mod+KP_3 workspace 3
-bindsym $mod+KP_4 workspace 4
-bindsym $mod+KP_5 workspace 5
-bindsym $mod+KP_6 workspace 6
-bindsym $mod+KP_7 workspace 7
-bindsym $mod+KP_8 workspace 8
-bindsym $mod+KP_9 workspace 9
-bindsym $mod+KP_0 workspace 10
+#doesnt work anymore
+#bindsym $mod+KP_1 workspace 1
+
+bindcode $mod+87 workspace 1
+bindcode $mod+88 workspace 2
+bindcode $mod+89 workspace 3
+bindcode $mod+83 workspace 4
+bindcode $mod+84 workspace 5
+bindcode $mod+85 workspace 6
+bindcode $mod+79 workspace 7
+bindcode $mod+80 workspace 8
+bindcode $mod+81 workspace 9
+bindcode $mod+90 workspace 0
 
 bindsym $mod+Tab workspace next_on_output
 bindsym $mod+shift+Tab workspace prev_on_output
@@ -120,16 +126,16 @@ bindsym $mod+shift+Tab workspace prev_on_output
 
 
 # move focused container to workspace
-bindsym $mod+Shift+KP_1 move container to workspace 1
-bindsym $mod+Shift+KP_2 move container to workspace 2
-bindsym $mod+Shift+KP_3 move container to workspace 3
-bindsym $mod+Shift+KP_4 move container to workspace 4
-bindsym $mod+Shift+KP_5 move container to workspace 5
-bindsym $mod+Shift+KP_6 move container to workspace 6
-bindsym $mod+Shift+KP_7 move container to workspace 7
-bindsym $mod+Shift+KP_8 move container to workspace 8
-bindsym $mod+Shift+KP_9 move container to workspace 9
-bindsym $mod+Shift+KP_0 move container to workspace 10
+bindcode $mod+Shift+87 move container to workspace 1
+bindcode $mod+Shift+88 move container to workspace 2
+bindcode $mod+Shift+89 move container to workspace 3
+bindcode $mod+Shift+83 move container to workspace 4
+bindcode $mod+Shift+84 move container to workspace 5
+bindcode $mod+Shift+85 move container to workspace 6
+bindcode $mod+Shift+79 move container to workspace 7
+bindcode $mod+Shift+80 move container to workspace 8
+bindcode $mod+Shift+81 move container to workspace 9
+bindcode $mod+Shift+90 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -167,10 +173,10 @@ bindsym $mod+q mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-bar {
-        #status_command i3status
-        status_command ~/.i3/i3status_.sh
-}
+#bar {
+#        #status_command i3status
+#        #status_command ~/.i3/i3status_.sh
+#}
 
 exec --no-startup-id setxkbmap de
 
@@ -182,18 +188,29 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
 
 
 # lock a session with "i3lock"
 # shutdown?
 
-exec --no-startup-id i3-msg 'workspace 1; exec terminator;'
-exec --no-startup-id i3-msg 'workspace 7; exec firefox;'
 
-exec --no-startup-id i3-msg 'workspace 3; exec thunderbird;'
-exec --no-startup-id i3-msg 'workspace 6; exec dolphin; '
+## Plasma Integration
+# Try to kill the wallpaper set by Plasma (it takes up the entire workspace and hides everythiing)
+exec --no-startup-id wmctrl -c Plasma
+for_window [title="Desktop — Plasma"] kill; floating enable; border none
 
-exec --no-startup-id i3-msg 'workspace 1'
+## Avoid tiling popups, dropdown windows from plasma
+# for the first time, manually resize them, i3 will remember the setting for floating windows
+for_window [class="plasmashell"] floating enable;
+for_window [class="Plasma"] floating enable; border none
+for_window [title="plasma-desktop"] floating enable; border none
+for_window [title="win7"] floating enable; border none
+for_window [class="krunner"] floating enable; border none
+for_window [class="Kmix"] floating enable; border none
+for_window [class="Klipper"] floating enable; border none
+for_window [class="Plasmoidviewer"] floating enable; border none
 
+
+focus_follows_mouse no
